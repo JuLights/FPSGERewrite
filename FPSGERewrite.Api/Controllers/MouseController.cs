@@ -42,7 +42,7 @@ namespace FPSGERewrite.Api.Controllers
                 return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<IActionResult> AddProductAsync(CreateMouseRequest mouseRequest)
         {
             if (!ModelState.IsValid) { return BadRequest(); }

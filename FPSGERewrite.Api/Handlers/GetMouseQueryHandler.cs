@@ -1,22 +1,54 @@
 ﻿using FPSGERewrite.Api.Query;
 using FPSGERewrite.DataService.Repositories.Interfaces;
 using FPSGERewrite.Entities.DbSet;
+using FPSGERewrite.Entities.Dtos.Responsne;
 using MediatR;
 
 namespace FPSGERewrite.Api.Handlers
 {
-    public class GetMouseQueryHandler : IRequestHandler<GetMouseQuery, Mouse>
+    public class GetMouseQueryHandler : IRequestHandler<GetMouseQuery, MouseResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public GetMouseQueryHandler(IUnitOfWork unitOfWork)
+        private readonly ILogger _logger;
+        public GetMouseQueryHandler(IUnitOfWork unitOfWork, ILoggerFactory logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger.CreateLogger("MouseHandler-Logs");
         }
-        public async Task<Mouse> Handle(GetMouseQuery request, CancellationToken cancellationToken)
+        public async Task<MouseResponse> Handle(GetMouseQuery request, CancellationToken cancellationToken)
         {
-            var result = await _unitOfWork.MouseRepository.GetByIdAsync(request.Id);
+            try
+            {
+                var mouse = await _unitOfWork.MouseRepository.GetByIdAsync(request.Id);
+                var productList = await _unitOfWork.ProductRepository.AllAsync();
+                var product = productList.Where(x => x.MouseId == mouse.MouseId).FirstOrDefault();
 
-            return result;
+
+                return new MouseResponse
+                {
+                    ProductId = product.ProductId,
+                    ProductName = product.ProductName,
+                    ProductCondition = product.ProductCondition,
+                    ProductDescription = product.ProductDescription,
+                    Price = product.Price,
+                    AddedDate = product.AddedDate,
+                    UpdatedDate = product.UpdatedDate,
+
+                    MouseId = mouse.MouseId,
+                    AdditionalKeys = mouse.AdditionalKeys,
+                    Brand = mouse.Brand,
+                    Color = mouse.Color,
+                    SensorType = mouse.SensorType,
+                    RGB = mouse.RGB,
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Handler {nameof(GetMouseQueryHandler)} Handler function Error {ex.Message + ex.InnerException}");
+                throw;
+            }
+
+            
         }
     }
 }

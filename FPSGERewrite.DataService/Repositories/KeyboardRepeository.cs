@@ -21,7 +21,7 @@ namespace FPSGERewrite.DataService.Repositories
         {
             try
             {
-                var result = await _dbSet.Where(x => x.KeyboardId == id).Include(x=>x.Product).FirstOrDefaultAsync();
+                var result = await _dbSet.Where(x => x.KeyboardId == id).FirstOrDefaultAsync();
                 return result;
             }
             catch (Exception ex)

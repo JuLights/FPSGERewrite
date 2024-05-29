@@ -46,7 +46,7 @@ namespace FPSGERewrite.Api.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<IActionResult> AddProductAsync(CreateKeyboardRequest keyboardRequest)
         {
             if(!ModelState.IsValid) { return BadRequest(); }
