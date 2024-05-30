@@ -1,7 +1,7 @@
-
+using FPSGERewrite.Application;
 using FPSGERewrite.DataService.Data;
-using FPSGERewrite.DataService.Repositories;
-using FPSGERewrite.DataService.Repositories.Interfaces;
+using FPSGERewrite.Infrastructure.DataAccess.Repositories;
+using FPSGERewrite.Infrastructure.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +17,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddMediatR(cfg=>cfg.RegisterServicesFromAssembly(typeof(Program).Assembly)); 
+builder.Services.AddMediatR(cfg=>cfg.RegisterServicesFromAssembly(typeof(DI).Assembly)); // for MediatR ???
+//builder.Services.AddMediatR(cfg=>cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 var app = builder.Build();
 

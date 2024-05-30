@@ -1,10 +1,7 @@
-﻿using FPSGERewrite.Api.Commands;
-using FPSGERewrite.Api.Query;
-using FPSGERewrite.DataService.Repositories.Interfaces;
-using FPSGERewrite.Entities.DbSet;
-using FPSGERewrite.Entities.Dtos.Request;
+﻿using FPSGERewrite.Application.Commands;
+using FPSGERewrite.Application.Query;
+using FPSGERewrite.Application.Dtos.Request;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FPSGERewrite.Api.Controllers

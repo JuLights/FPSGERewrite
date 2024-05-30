@@ -1,13 +1,8 @@
-﻿using FPSGERewrite.Api.Commands;
-using FPSGERewrite.Api.Query;
-using FPSGERewrite.DataService.Repositories.Interfaces;
-using FPSGERewrite.Entities.DbSet;
-using FPSGERewrite.Entities.Dtos.Request;
+﻿using FPSGERewrite.Application.Commands;
+using FPSGERewrite.Application.Query;
+using FPSGERewrite.Application.Dtos.Request;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Drawing;
 
 namespace FPSGERewrite.Api.Controllers
 {
@@ -20,7 +15,6 @@ namespace FPSGERewrite.Api.Controllers
         {
             _mediator = mediator;
         }
-
 
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAllKeyboard()
