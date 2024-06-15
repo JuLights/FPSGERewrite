@@ -28,6 +28,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "FPSGERewrite Api");
+        options.RoutePrefix = string.Empty;
+        //options.DocumentTitle = "Demo Web API";
+        //options.DocExpansion(DocExpansion.List);
+    });
+    app.UseHsts();
+}
 
 app.UseHttpsRedirection();
 
