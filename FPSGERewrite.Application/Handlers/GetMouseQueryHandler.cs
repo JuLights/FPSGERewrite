@@ -21,27 +21,36 @@ namespace FPSGERewrite.Api.Handlers
             try
             {
                 var mouse = await _unitOfWork.MouseRepository.GetByIdAsync(request.Id);
-                var productList = await _unitOfWork.ProductRepository.AllAsync();
-                var product = productList.Where(x => x.MouseId == mouse.MouseId).FirstOrDefault();
-
-
-                return new MouseResponse
+                if (mouse != null)
                 {
-                    ProductId = product.ProductId,
-                    ProductName = product.ProductName,
-                    ProductCondition = product.ProductCondition,
-                    ProductDescription = product.ProductDescription,
-                    Price = product.Price,
-                    AddedDate = product.AddedDate,
-                    UpdatedDate = product.UpdatedDate,
+                    var productList = await _unitOfWork.ProductRepository.AllAsync();
+                    var product = productList.Where(x => x.MouseId == mouse.MouseId).FirstOrDefault();
 
-                    MouseId = mouse.MouseId,
-                    AdditionalKeys = mouse.AdditionalKeys,
-                    Brand = mouse.Brand,
-                    Color = mouse.Color,
-                    SensorType = mouse.SensorType,
-                    RGB = mouse.RGB,
-                };
+
+                    return new MouseResponse
+                    {
+                        ProductId = product.ProductId,
+                        ProductName = product.ProductName,
+                        ProductCondition = product.ProductCondition,
+                        ProductDescription = product.ProductDescription,
+                        Price = product.Price,
+                        AddedDate = product.AddedDate,
+                        UpdatedDate = product.UpdatedDate,
+
+                        MouseId = mouse.MouseId,
+                        AdditionalKeys = mouse.AdditionalKeys,
+                        Brand = mouse.Brand,
+                        Color = mouse.Color,
+                        SensorType = mouse.SensorType,
+                        RGB = mouse.RGB,
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+                
+
             }
             catch (Exception ex)
             {

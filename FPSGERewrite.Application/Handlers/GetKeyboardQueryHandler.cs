@@ -23,25 +23,34 @@ namespace FPSGERewrite.Api.Handlers
             try
             {
                 var keyboard = await _unitOfWork.KeyboardRepository.GetByIdAsync(request.Id);
-                var productList = await _unitOfWork.ProductRepository.AllAsync();
-                var product = productList.Where(x => x.KeyboardId == keyboard.KeyboardId).FirstOrDefault();
 
-                return new KeyboardResponse
+                if (keyboard != null)
                 {
-                    ProductName = product.ProductName,
-                    ProductCondition = product.ProductCondition,
-                    ProductDescription = product.ProductDescription,
-                    ProductId = product.ProductId,
-                    AddedDate = product.AddedDate,
-                    UpdatedDate = product.UpdatedDate,
-                    Price = product.Price,
-                    KeyboardId = keyboard.KeyboardId,
-                    Color = keyboard.Color,
-                    Brand = keyboard.Brand,
-                    CableLength = keyboard.CableLength,
-                    RGB = keyboard.RGB,
-                    SwitchType = keyboard.SwitchType,
-                };
+                    var productList = await _unitOfWork.ProductRepository.AllAsync();
+                    var product = productList.Where(x => x.KeyboardId == keyboard.KeyboardId).FirstOrDefault();
+
+                    return new KeyboardResponse
+                    {
+                        ProductName = product.ProductName,
+                        ProductCondition = product.ProductCondition,
+                        ProductDescription = product.ProductDescription,
+                        ProductId = product.ProductId,
+                        AddedDate = product.AddedDate,
+                        UpdatedDate = product.UpdatedDate,
+                        Price = product.Price,
+                        KeyboardId = keyboard.KeyboardId,
+                        Color = keyboard.Color,
+                        Brand = keyboard.Brand,
+                        CableLength = keyboard.CableLength,
+                        RGB = keyboard.RGB,
+                        SwitchType = keyboard.SwitchType,
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+                
             }
             catch(Exception ex) 
             {
