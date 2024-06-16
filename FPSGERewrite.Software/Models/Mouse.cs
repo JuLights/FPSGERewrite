@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FPSGERewrite.Domain.Entities
+namespace FPSGERewrite.Software.Models
 {
     public class Mouse
     {
@@ -16,6 +15,7 @@ namespace FPSGERewrite.Domain.Entities
         public string AdditionalKeys { get; set; }
         public string SensorType { get; set; }
         public bool RGB { get; set; }
+        [AllowNull]
         public byte[] ImageData { get; set; }
 
         //navigation properties
