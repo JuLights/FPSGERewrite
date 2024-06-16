@@ -39,11 +39,10 @@ namespace FPSGERewrite.Api.Controllers
                 return Ok(result);
         }
 
-
         [HttpPost("Add")]
         public async Task<IActionResult> AddProductAsync(CreateKeyboardRequest keyboardRequest)
         {
-            if(!ModelState.IsValid) { return BadRequest(); }
+            if (!ModelState.IsValid) { return BadRequest(); }
 
             var command = new AddKeyboardCommand(keyboardRequest);
 

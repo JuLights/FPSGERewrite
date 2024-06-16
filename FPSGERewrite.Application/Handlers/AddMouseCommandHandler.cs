@@ -14,6 +14,14 @@ namespace FPSGERewrite.Api.Handlers
         }
         public async Task<bool> Handle(AddMouseCommand request, CancellationToken cancellationToken)
         {
+            byte[] imageByteArr;
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await request.CreateMouseRequest.FormFile.CopyToAsync(memoryStream);
+                imageByteArr = memoryStream.ToArray();
+            }
+
             var mouse = new Mouse();
             mouse.RGB = request.CreateMouseRequest.RGB;
             mouse.AdditionalKeys = request.CreateMouseRequest.AdditionalKeys;
@@ -35,7 +43,8 @@ namespace FPSGERewrite.Api.Handlers
                     AdditionalKeys = request.CreateMouseRequest.AdditionalKeys,
                     Color = request.CreateMouseRequest.Color,
                     Brand = request.CreateMouseRequest.Brand,
-                    SensorType = request.CreateMouseRequest.SensorType
+                    SensorType = request.CreateMouseRequest.SensorType,
+                    ImageData = imageByteArr
                 },
             };
 

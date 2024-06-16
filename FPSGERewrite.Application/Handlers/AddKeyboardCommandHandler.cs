@@ -16,6 +16,16 @@ namespace FPSGERewrite.Api.Handlers
 
         public async Task<bool> Handle(AddKeyboardCommand request, CancellationToken cancellationToken)
         {
+            byte[] imageByteArr;
+
+            using (var memoryStream = new MemoryStream()) 
+            {
+                await request.CreateKeyboardRequest.FormFile.CopyToAsync(memoryStream);
+                imageByteArr = memoryStream.ToArray();
+            }
+
+            
+
             var product = new Product
             {
                 AddedDate = DateTime.UtcNow,
@@ -30,7 +40,8 @@ namespace FPSGERewrite.Api.Handlers
                     Color = request.CreateKeyboardRequest.Color,
                     Brand = request.CreateKeyboardRequest.Brand,
                     CableLength = request.CreateKeyboardRequest.CableLength,
-                    SwitchType = request.CreateKeyboardRequest.SwitchType
+                    SwitchType = request.CreateKeyboardRequest.SwitchType,
+                    ImageData = imageByteArr
                 },
             };
 
