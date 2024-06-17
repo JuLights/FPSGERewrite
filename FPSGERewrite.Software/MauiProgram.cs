@@ -10,6 +10,13 @@ namespace FPSGERewrite.Software
         {
             var builder = MauiApp.CreateBuilder();
 
+            //builder.Services.AddLogging(
+            //configure =>
+            //{
+            //    configure.AddDebug();
+            //    configure.AddConsole();
+            //});
+
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()

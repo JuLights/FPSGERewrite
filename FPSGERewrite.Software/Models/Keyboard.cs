@@ -15,6 +15,9 @@ namespace FPSGERewrite.Software.Models
         public string Brand { get; set; }
         public string Color { get; set; }
         public string RGB { get; set; }
+
+        //try
+        public ImageSource Src { get;set; }
         [AllowNull]
         public byte[] ImageData { get; set; }
 

@@ -1,5 +1,6 @@
 using FPSGERewrite.Software.Models;
 using Newtonsoft.Json;
+using Keyboard = FPSGERewrite.Software.Models.Keyboard;
 
 namespace FPSGERewrite.Software.Views;
 
@@ -14,16 +15,25 @@ public partial class LoginPage : ContentPage
     {
         try
         {
+            List<Keyboard> keyboardList;
             using (var httpClient = new HttpClient())
             {
-                var response = await httpClient.GetAsync("https://juiznogoud.azurewebsites.net/api/Mouse/GetAll");
+                var response = await httpClient.GetAsync("https://juiznogoud.azurewebsites.net/api/Keyboard/GetAll");
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
+                if(content is not null)
+                {
+                    keyboardList = JsonConvert.DeserializeObject<List<Keyboard>>(content);
 
-                var mouseList = JsonConvert.DeserializeObject<List<Mouse>>(content);
+                    await Navigation.PushAsync(new NavigationPage(new HomePage(keyboardList)));
+                }
+                else
+                {
+                    await DisplayAlert("Error", $"An error occurred: Content is null", "OK");
+                }
 
-                await Navigation.PushAsync(new NavigationPage(new HomePage(mouseList)));
+                
             }
         }
         catch(Exception ex)

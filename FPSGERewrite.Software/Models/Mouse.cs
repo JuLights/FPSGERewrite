@@ -20,5 +20,6 @@ namespace FPSGERewrite.Software.Models
 
         //navigation properties
         public virtual Product Product { get; set; }
+
     }
 }

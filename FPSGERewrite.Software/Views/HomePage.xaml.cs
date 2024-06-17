@@ -1,25 +1,39 @@
-using Newtonsoft.Json;
 using FPSGERewrite.Software.Models;
 using System.Collections.ObjectModel;
+using Keyboard = FPSGERewrite.Software.Models.Keyboard;
 
 namespace FPSGERewrite.Software.Views;
 
 public partial class HomePage : ContentPage
 {
-    public ObservableCollection<Mouse> Mouse { get; set; } = new ObservableCollection<Mouse>();
+    public List<Mouse> Mouses { get; set; }
+    public List<Keyboard> Keyboards { get; set; }
+    public HomePage()
+    {
+        InitializeComponent();
+    }
 
-    public HomePage(List<Mouse> mice)
+    public HomePage(List<Keyboard> keyboards)
     {
         InitializeComponent();
 
-        foreach (var mouse in mice)
+        Keyboards = keyboards;
+
+        foreach (var keyboard in keyboards)
         {
-            Mouse.Add(mouse);
+            if (keyboard.ImageData != null)
+            {
+                MemoryStream memory = new MemoryStream(keyboard.ImageData);
+                keyboard.Src = ImageSource.FromStream(() => (Stream)memory);
+            }
+            
         }
+
+        
 
         BindingContext = this;
 
-        
+
     }
 
 }

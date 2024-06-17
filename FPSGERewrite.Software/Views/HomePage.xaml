@@ -6,9 +6,9 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:local="clr-namespace:FPSGERewrite.Software.Views"
              BackgroundImageSource="Resources/Images/background.svg">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <local:HomePage />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     
     <VerticalStackLayout>
         <!--Search Bar-->
@@ -28,28 +28,60 @@
         </HorizontalStackLayout>
         <!--Advertisement Card-->
         
-        <!--List View-->
-        <HorizontalStackLayout VerticalOptions="Center">
-            <ListView ItemsSource="{Binding Mouse}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        
-                        <HorizontalStackLayout WidthRequest="500">
-                            <Label Text="{Binding MouseId}"/>
-                            <Label Text="{Binding Brand}"/>
-                            <Label Text="{Binding Color}"/>
-                            <Label Text="{Binding AdditionalKeys}"/>
-                            <Label Text="{Binding SensorType}"/>
-                            <Label Text="{Binding RGB}"/>
-                            <!--<Label Text="{Binding imageData}"/>-->
-                        </HorizontalStackLayout>
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                
-            </ListView>
+        <!--CarouselView-->
+
+        <HorizontalStackLayout HorizontalOptions="StartAndExpand" Padding="15,0,0,0">
+            <Label Text="Hot Sales" FontFamily="PhilosopherBoldItalic"/>
         </HorizontalStackLayout>
-        
-        
+
+        <CollectionView ItemsSource="{Binding Keyboards}"
+                        ItemsLayout="HorizontalList"
+                        Margin="-10"
+                        BackgroundColor="Transparent">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    
+                    <Grid Padding="10" >
+                        <VerticalStackLayout BackgroundColor="Transparent" Background="Black">
+                            <HorizontalStackLayout Padding="10,7,0,0">
+                                <Frame CornerRadius="100" WidthRequest="80" HeightRequest="23" Padding="8,3,0,0" HorizontalOptions="Start">
+                                    <Label Text="Free Shipping" TextColor="#FF5500" FontSize="9" FontFamily="Roboto"/>
+                                </Frame>
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Padding="5,5,0,0">
+                                <Image Source="{Binding Src}" HeightRequest="75" WidthRequest="75" Aspect="AspectFit" />
+                            </HorizontalStackLayout>
+                            
+
+                            <VerticalStackLayout Padding="10,0,0,0">
+                                <Label Text="{Binding Brand}" FontFamily="RobotoMedium" FontSize="11" />
+                                <Label Text="$ 24.999" FontFamily="RobotoBold" FontSize="13" />
+                            </VerticalStackLayout>
+                            
+
+                        </VerticalStackLayout>
+                        
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <!--List View-->
+        <!--<ListView ItemsSource="{Binding Mouses}" Margin="20" BackgroundColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10" Spacing="10" BackgroundColor="LightGray">
+                            <Image Source="dotnet_bot.png" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>-->
+
+
     </VerticalStackLayout>
 </ContentPage>
