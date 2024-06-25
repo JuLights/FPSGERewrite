@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+                   x:Class="FPSGERewrite.Software.Views.ProductSheet"
+                   BackgroundColor="#FFFFFF"
+                   CornerRadius="40">
+
+
+    <the49:BottomSheet.Detents>
+        <the49:RatioDetent Ratio="0.45" />
+    </the49:BottomSheet.Detents>
+
+    <VerticalStackLayout Padding="0">
+        <VerticalStackLayout Padding="0,30,0,0" VerticalOptions="StartAndExpand">
+            <HorizontalStackLayout Padding="25,0,0,0" WidthRequest="400" HorizontalOptions="CenterAndExpand">
+                <Label HorizontalOptions="StartAndExpand" Text="FREE SHIPPING" TextColor="#909090" FontFamily="RobotoMedium" FontSize="12" HorizontalTextAlignment="Start"/>
+                <Image Source="bxs_star.svg" Aspect="AspectFit"/>
+                <Label Text="4.8  (231)" FontFamily="RobotoRegular" FontSize="18" Padding="180,0,30,0"/>
+            </HorizontalStackLayout>
+            <Label
+                Padding="25,0,0,0"
+                Text="{Binding Brand}"
+                TextColor="#343A40"
+                FontSize="20"
+                FontFamily="RobotoBold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+
+            <Label Padding="25,15,0,0"
+                Text="{Binding Description}"
+                   TextColor="#909090"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <HorizontalStackLayout Padding="25,15,0,0" WidthRequest="400">
+                <Label Text="$" TextColor="#FF5500" FontSize="20" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                <Label
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"
+                   Text="{Binding Price}"
+                   TextColor="#FF5500"
+                   FontSize="20"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Start" />
+                <HorizontalStackLayout Padding="160,0,0,0">
+                    <RadioButton Padding="0" TextColor="#3F4343" BorderColor="Red"/>
+                    <RadioButton Padding="0"/>
+                    <RadioButton Padding="0"/>
+                </HorizontalStackLayout>
+                
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="StartAndExpand" Padding="25,15,0,0">
+                <Frame CornerRadius="40" WidthRequest="90" HeightRequest="35" HorizontalOptions="Start" Padding="0,0,0,0">
+                    <HorizontalStackLayout>
+                        <Label Text="-" Padding="15,0,0,0" FontSize="30" VerticalTextAlignment="Center"  TextColor="#909090">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Decrease_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="Cnt" Text="{Binding Count}" Padding="13,0,0,0" FontSize="20" HorizontalOptions="Center" VerticalTextAlignment="Center"/>
+                        <Label Text="+" Padding="15,0,0,0" FontSize="25" VerticalTextAlignment="Center"  TextColor="#909090">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Increase_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                    
+                </Frame>
+                <HorizontalStackLayout Padding="80,0,0,0">
+                    <Button CornerRadius="55" Clicked="Buy_Clicked" FontFamily="RobotoMedium" WidthRequest="180" Padding="0" Text="Buy Now" TextColor="#FFFFFF" BackgroundColor="#FF5500"/>
+                </HorizontalStackLayout>
+                
+            </HorizontalStackLayout>
+            
+        </VerticalStackLayout>
+        
+        
+        
+        
+        
+    </VerticalStackLayout>
+</the49:BottomSheet>

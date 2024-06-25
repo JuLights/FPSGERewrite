@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Maui;
+using FPSGERewrite.Software.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
+using The49.Maui.BottomSheet;
+using IeuanWalker.Maui.Switch;
 
 namespace FPSGERewrite.Software
 {
@@ -10,6 +13,9 @@ namespace FPSGERewrite.Software
         {
             var builder = MauiApp.CreateBuilder();
 
+
+            //services
+            builder.Services.AddSingleton(typeof(IProductService),typeof(ProductsService));
             //builder.Services.AddLogging(
             //configure =>
             //{
@@ -19,6 +25,8 @@ namespace FPSGERewrite.Software
 
             builder
                 .UseMauiApp<App>()
+                .UseSwitch()
+                .UseBottomSheet()
                 .UseMauiCommunityToolkit()
                 .ConfigureLifecycleEvents(events =>
                 {
@@ -55,6 +63,8 @@ namespace FPSGERewrite.Software
                     fonts.AddFont("Roboto-Regular.ttf", "RobotoRegular");
                     fonts.AddFont("Roboto-Thin.ttf", "RobotoThin");
                 });
+
+            
 
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
             {

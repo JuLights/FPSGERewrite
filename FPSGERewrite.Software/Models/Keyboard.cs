@@ -17,9 +17,14 @@ namespace FPSGERewrite.Software.Models
         public string RGB { get; set; }
 
         //try
-        public ImageSource Src { get;set; }
+        //public ImageSource Src { get;set; }
         [AllowNull]
         public byte[] ImageData { get; set; }
+        public string Base64Image 
+        { 
+            get => Convert.ToBase64String(ImageData); 
+            set => ImageData = Convert.FromBase64String(value);
+        }
 
         //navigation properties
         public virtual Product Product { get; set; }

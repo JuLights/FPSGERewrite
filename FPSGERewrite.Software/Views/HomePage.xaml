@@ -5,10 +5,16 @@
              Title="HomePage"
              NavigationPage.HasNavigationBar="False"
              xmlns:local="clr-namespace:FPSGERewrite.Software.Views"
+             xmlns:converters="clr-namespace:FPSGERewrite.Software.Converters"
              BackgroundImageSource="Resources/Images/background.svg">
     <!--<ContentPage.BindingContext>
         <local:HomePage />
     </ContentPage.BindingContext>-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Base64ToImageSourceConverter x:Key="Base64ToImageSourceConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <VerticalStackLayout>
         <!--Search Bar-->
@@ -22,52 +28,142 @@
 
             <HorizontalStackLayout Padding="5,0,20,0">
                 <Frame CornerRadius="100" WidthRequest="47" Padding="0">
-                    <Image Source="Resources/Images/search.svg"/>
+                    <Image Source="Resources/Images/bell.svg" WidthRequest="22" Aspect="AspectFit"/>
                 </Frame>
             </HorizontalStackLayout>
         </HorizontalStackLayout>
         <!--Advertisement Card-->
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Padding="0,25,0,0">
+            <Frame WidthRequest="358" CornerRadius="26" BackgroundColor="Transparent" BorderColor="Transparent" Padding="0">
+                <HorizontalStackLayout>
+                    
+                    <Grid>
+                        <Image Source="framebackground.svg"/>
+                        <Image Source="group.svg" WidthRequest="279" Margin="70,0,0,0"/>
+                        <Label Text="FPS.GE" TextColor="#F4BD46" FontFamily="RobotoThin" FontSize="35" Padding="5,50,0,0"/>
+                        <HorizontalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Padding="10,0,0,-20">
+                            <Label Text="30%" FontFamily="RobotoLight" TextColor="White" FontSize="25"/>
+                            <Label Text="Discount" FontFamily="RobotoMedium" TextColor="White" FontSize="13" Padding="2,13"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Padding="10,50,0,0">
+                            <Label Text="in technology" FontFamily="RobotoRegular" TextColor="White" FontSize="19"/>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </HorizontalStackLayout>
+                
+                
+            </Frame>
+        </HorizontalStackLayout>
+        
         
         <!--CarouselView-->
 
         <HorizontalStackLayout HorizontalOptions="StartAndExpand" Padding="15,0,0,0">
             <Label Text="Hot Sales" FontFamily="PhilosopherBoldItalic"/>
         </HorizontalStackLayout>
-
+        
         <CollectionView ItemsSource="{Binding Keyboards}"
                         ItemsLayout="HorizontalList"
-                        Margin="-10"
+                        Margin="0"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged"
                         BackgroundColor="Transparent">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
+                    <HorizontalStackLayout Padding="15,0,0,0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal"></VisualState>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Padding="0,0,0,0">
+                            
+                            <!--Card Content-->
+                            <HorizontalStackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="Transparent" WidthRequest="120" HeightRequest="148" Padding="0" Background="Transparent">
+                                <VerticalStackLayout Padding="0">
+                                    <HorizontalStackLayout Padding="3,7,0,0">
+                                        <Frame CornerRadius="100" WidthRequest="70" HeightRequest="23" Padding="8,3,0,0" HorizontalOptions="Start">
+                                            <Label Text="Free Shipping" TextColor="#FF5500" FontSize="9" FontFamily="RobotoRegular" Padding="0"/>
+                                        </Frame>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout Padding="25,5,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                        <!--<Image Source="{Binding Base64Image, Converter={StaticResource Base64ToImageSourceConverter}}" HorizontalOptions="Center" Margin="0" HeightRequest="75" WidthRequest="75" Aspect="AspectFit" />-->
+                                    </HorizontalStackLayout>
+
+                                    <VerticalStackLayout Padding="10,0,0,0">
+                                        <Label Text="{Binding Brand}" FontFamily="RobotoMedium" FontSize="11" />
+                                        <Label Text="$ 24.999" FontFamily="RobotoBold" FontSize="13" />
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                            <!--Card Background-->
+                            <Border Padding="0" StrokeThickness="0" BackgroundColor="Transparent">
+                                <Border.StrokeShape>
+                                    <RoundRectangle StrokeThickness="0" CornerRadius="10,10,10,10" />
+                                </Border.StrokeShape>
+
+                                <!--<Frame.Shadow>
+            <Shadow Brush="#CFCFCF"
+                        Offset="10,10"
+                        Radius="40"/>
+        </Frame.Shadow>-->
+                                <Image Source="cardbackground.svg" Aspect="AspectFit">
+                                    <Image.Shadow>
+                                        <Shadow Brush="Black"
+                        Offset="10,10"
+                        Radius="40"/>
+                                    </Image.Shadow>
+                                </Image>
+                            </Border>
+
+
+                        </Grid>
+                    </HorizontalStackLayout>
                     
-                    <Grid Padding="10" >
-                        <VerticalStackLayout BackgroundColor="Transparent" Background="Black">
-                            <HorizontalStackLayout Padding="10,7,0,0">
-                                <Frame CornerRadius="100" WidthRequest="80" HeightRequest="23" Padding="8,3,0,0" HorizontalOptions="Start">
-                                    <Label Text="Free Shipping" TextColor="#FF5500" FontSize="9" FontFamily="Roboto"/>
-                                </Frame>
-                            </HorizontalStackLayout>
-
-                            <HorizontalStackLayout Padding="5,5,0,0">
-                                <Image Source="{Binding Src}" HeightRequest="75" WidthRequest="75" Aspect="AspectFit" />
-                            </HorizontalStackLayout>
-                            
-
-                            <VerticalStackLayout Padding="10,0,0,0">
-                                <Label Text="{Binding Brand}" FontFamily="RobotoMedium" FontSize="11" />
-                                <Label Text="$ 24.999" FontFamily="RobotoBold" FontSize="13" />
-                            </VerticalStackLayout>
-                            
-
-                        </VerticalStackLayout>
-                        
-                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
+        <VerticalStackLayout Padding="15,50,0,0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+            <Label Text="Recently viewed"/>
+            
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" WidthRequest="120" Padding="2,10">
+                <local:RecentlyCards PriceLabel="$15.500" ImgSource="laptop.svg" BrandLabel="Razer"/> <!--Gesture Recognize-->
+                <local:RecentlyCards PriceLabel="$15.500" ImgSource="dynamic.svg" BrandLabel="Razer" Padding="15,0,0,0"/>
+                <!--Gesture Recognize-->
+            </HorizontalStackLayout>
+            
+        </VerticalStackLayout>
 
+
+        <!--<CollectionView ItemsSource="{Binding Keyboards}"
+                ItemsLayout="HorizontalList"
+                Margin="-10"
+                BackgroundColor="Transparent">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout Padding="25,5,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                            <Image Source="{Binding Src}" HorizontalOptions="Center" Margin="0" HeightRequest="75" WidthRequest="75" Aspect="AspectFit" />
+                        </HorizontalStackLayout>
+
+                        <VerticalStackLayout Padding="10,0,0,0">
+                            <Label Text="{Binding Brand}" FontFamily="RobotoMedium" FontSize="11" />
+                            <Label Text="$ 24.999" FontFamily="RobotoBold" FontSize="13" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>-->
         <!--List View-->
         <!--<ListView ItemsSource="{Binding Mouses}" Margin="20" BackgroundColor="Transparent">
             <ListView.ItemTemplate>

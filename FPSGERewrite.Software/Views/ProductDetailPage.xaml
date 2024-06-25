@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FPSGERewrite.Software.Views.ProductDetailPage"
+             Title="ProductDetailPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="Resources/Images/background.svg" Padding="15,45,0,0">
+    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Keyboard}">
+        <HorizontalStackLayout>
+            <Frame CornerRadius="50">
+                <Image/>
+            </Frame>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Grid>
+                <Frame WidthRequest="240" HeightRequest="245" CornerRadius="40" BackgroundColor="#FFFFFF" />
+                <Image Source="{Binding Src}" Aspect="AspectFit" WidthRequest="260" HeightRequest="260"/>
+            </Grid>
+        </HorizontalStackLayout>
+        
+    </VerticalStackLayout>
+</ContentPage>

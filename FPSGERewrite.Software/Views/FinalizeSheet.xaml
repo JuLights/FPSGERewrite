@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   x:Class="FPSGERewrite.Software.Views.FinalizeSheet"
+                   xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+                   CornerRadius="50"
+                   BackgroundColor="#FFFFFF">
+
+    <the49:BottomSheet.Detents>
+        <the49:RatioDetent Ratio="0.28" />
+    </the49:BottomSheet.Detents>
+
+    <VerticalStackLayout HorizontalOptions="StartAndExpand" Padding="5,30">
+        <HorizontalStackLayout Padding="5,0,0,0">
+            <Label
+                Padding="15,0,0,0"
+                FontFamily="RobotoBold"
+                Text="Subtotal(2 items)"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+            
+            <Label Padding="205,0,0,0"
+                   FontSize="15"
+                   FontFamily="RobotoBold"
+                   Text="$ 2,999"
+                   HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Padding="5">
+            <Label Padding="15,0,0,0"
+                   FontFamily="RobotoBold"
+                   FontSize="15"
+        Text="Shipping cost"
+        VerticalOptions="Center" 
+        HorizontalOptions="Start" />
+            <Label Padding="240,0,0,0"
+                Text="Free"
+                   FontSize="15"
+                   FontFamily="RobotoBold"
+           HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+        <Line Stroke="Gray" X2="380" StrokeDashArray="3,3" />
+        <HorizontalStackLayout Padding="5,12,0,0">
+            <Label 
+                FontSize="15"
+                Padding="15,0,0,0"
+                Text="Total"
+                FontFamily="RobotoBold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+            <Label Text="$ 2,999"
+                   FontSize="15"
+                   FontFamily="RobotoBold"
+                   Padding="280,0,0,0"
+                HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center" Padding="30">
+            <Button Text="Finalize Purchase" FontFamily="RobotoMedium" WidthRequest="280" CornerRadius="50" BackgroundColor="#FF5500"/>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</the49:BottomSheet>

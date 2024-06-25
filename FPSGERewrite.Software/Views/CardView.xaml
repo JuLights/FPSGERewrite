@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FPSGERewrite.Software.Views.CardView">
+    <HorizontalStackLayout WidthRequest="213" HeightRequest="148" BackgroundColor="Transparent">
+        <Frame CornerRadius="20" Padding="0" x:Name="CustomFrame" BackgroundColor="{Binding CardBackground}" WidthRequest="213" HeightRequest="148">
+            <VerticalStackLayout Padding="20">
+                <HorizontalStackLayout VerticalOptions="Start">
+                    <Image Source="visainclogo.svg" Aspect="AspectFit" WidthRequest="40"/>
+                    <HorizontalStackLayout Padding="120,0,0,0">
+                        <Image Source="checkmark2.svg" BackgroundColor="White" Aspect="AspectFit" WidthRequest="15"/>
+                    </HorizontalStackLayout>
+                    
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout VerticalOptions="Center" Padding="0,17,0,0">
+                    <Label x:Name="CardNumber" Text="{Binding CardNumberText}" FontSize="12" FontFamily="RobotoMedium" TextColor="#FFFFFF"/>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout HorizontalOptions="Start" Padding="0,12">
+                    <Image Source="chip.svg" Aspect="AspectFit" WidthRequest="22"/>
+                    <Label x:Name="ExpireDate" Text="{Binding ExpireDateText}" Padding="120,0,0,0" FontFamily="RobotoMedium" FontSize="12" TextColor="#FFFFFF" HorizontalOptions="End"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            
+            
+
+        </Frame>
+        
+    </HorizontalStackLayout>
+</ContentView>

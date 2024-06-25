@@ -16,25 +16,28 @@ public partial class LoginPage : ContentPage
         try
         {
             List<Keyboard> keyboardList;
-            using (var httpClient = new HttpClient())
-            {
-                var response = await httpClient.GetAsync("https://juiznogoud.azurewebsites.net/api/Keyboard/GetAll");
-                response.EnsureSuccessStatusCode();
+            await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+            //await Navigation.PushAsync(new HomePage());
+            //using (var httpClient = new HttpClient())
+            //{
+            //    var response = await httpClient.GetAsync("https://juiznogoud.azurewebsites.net/api/Keyboard/GetAll");
+            //    response.EnsureSuccessStatusCode();
 
-                var content = await response.Content.ReadAsStringAsync();
-                if(content is not null)
-                {
-                    keyboardList = JsonConvert.DeserializeObject<List<Keyboard>>(content);
+            //    var content = await response.Content.ReadAsStringAsync();
+            //    if(content is not null)
+            //    {
+            //        keyboardList = JsonConvert.DeserializeObject<List<Keyboard>>(content);
+            //        keyboardList.Reverse();
 
-                    await Navigation.PushAsync(new NavigationPage(new HomePage(keyboardList)));
-                }
-                else
-                {
-                    await DisplayAlert("Error", $"An error occurred: Content is null", "OK");
-                }
+            //        await Navigation.PushAsync(new HomePage(keyboardList));
+            //    }
+            //    else
+            //    {
+            //        await DisplayAlert("Error", $"An error occurred: Content is null", "OK");
+            //    }
 
-                
-            }
+
+            //}
         }
         catch(Exception ex)
         {

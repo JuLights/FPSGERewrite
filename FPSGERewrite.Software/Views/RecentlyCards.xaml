@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FPSGERewrite.Software.Views.RecentlyCards">
+    <Frame Padding="25" Opacity="0.5" BackgroundColor="Transparent" HasShadow="True">
+        <Frame.Shadow>
+            <Shadow Brush="Black"/>
+        </Frame.Shadow>
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image x:Name="ImgSr" Source="{Binding ImgSourceProperty}" WidthRequest="120" Aspect="AspectFit"/>
+            <Label x:Name="BrndLabel" Text="{Binding BrandLabelProperty}" HorizontalOptions="Center"/>
+            <Label x:Name="PrcLabel" Text="{Binding PriceLabelProperty}" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        
+    </Frame>
+</ContentView>

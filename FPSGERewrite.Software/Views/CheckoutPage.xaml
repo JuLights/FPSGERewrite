@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FPSGERewrite.Software.Views.CheckoutPage"
+             Title="CheckoutPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundImageSource="Resources/Images/background.svg" Padding="0,40,0,0"
+             xmlns:customView="clr-namespace:FPSGERewrite.Software.Views">
+    
+    <VerticalStackLayout VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+        <!--<HorizontalStackLayout>
+            <customView:CardView CardBackground="#E27BC1" CardNumberText="{Binding CrdNumber}" ExpireDateText="{Binding ExpDate}" />
+            <customView:CardView CardBackground="#A280C1" CardNumberText="{Binding CrdNumber}" ExpireDateText="{Binding ExpDate}" />
+        </HorizontalStackLayout>-->
+        <Label Text="Checkout" Padding="25,15,0,0"/>
+
+        <!--Brand & Image-->
+        <HorizontalStackLayout HorizontalOptions="Start" Padding="25,50,0,0">
+            <Image Source="{Binding Src}" Aspect="AspectFit" WidthRequest="112"/>
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="{Binding Brand}" TextColor="#FF5500" FontSize="22" FontFamily="RobotoMedium"/>
+                </HorizontalStackLayout>
+                
+                <HorizontalStackLayout>
+                    <Label Text="$" VerticalOptions="Center" FontSize="25" TextColor="#FF5500"/>
+                    <Label 
+                        Text="{Binding Price}"
+                        FontSize="25"
+                        TextColor="#FF5500"
+                        FontFamily="RobotoRegular"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" />
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+        </HorizontalStackLayout>
+
+
+        <!--Shipping method-->
+        <Label Text="Shipping method" Padding="25,15,0,0" FontFamily="RobotoMedium" FontSize="14"/>
+        <HorizontalStackLayout HorizontalOptions="Center" Padding="0">
+            <Label Text="Home delivery" VerticalTextAlignment="Center"/>
+            <Switch IsToggled="False"/>
+            <Label Text="Pick up in store" VerticalTextAlignment="Center"/>
+        </HorizontalStackLayout>
+
+        <Label Text="Select your payment method" FontFamily="RobotoMedium" FontSize="15" Padding="25,10,0,10"/>
+        <!--Card View-->
+        <CollectionView ItemsSource="{Binding Cards}"
+                        ItemsLayout="HorizontalList"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout Padding="5,0,0,0">
+                        <Grid Padding="0">
+                            <customView:CardView CardBackground="{Binding CardColor}" CardNumberText="{Binding CardNumber}" ExpireDateText="{Binding ExpirationDate}"/>
+                        </Grid>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </VerticalStackLayout>
+</ContentPage>
